@@ -121,48 +121,40 @@ test-stable-perf)
     # is not yet loaded.
     sudo --non-interactive ./net/scripts/enable-nvidia-persistence-mode.sh || true
 
-    rm -rf target/perf-libs
-    ./fetch-perf-libs.sh
-
+    $rm  -rf
+target/perf-libs/fetch-perf-libs.sh
     # Force CUDA for solana-core unit tests
     export TEST_PERF_LIBS_CUDA=1
-
     # Force CUDA in ci/localnet-sanity.sh
-    export SOLANA_CUDA=1
+export SOLANA_CUDA=1
   fi
-
-  _ cargo build --bins ${V:+--verbose}
-  _ cargo test --package solana-perf --package solana-ledger --package solana-core --lib ${V:+--verbose} -- --nocapture
-  _ cargo run --manifest-path poh-bench/Cargo.toml ${V:+--verbose} -- --hashes-per-tick 10
-  ;;
-test-wasm)
-  _ node --version
-  _ npm --version
-  for dir in sdk/{program,}; do
-    if [[ -r "$dir"/package.json ]]; then
-      pushd "$dir"
-      _ npm install
-      _ npm test
-      popd
+_ cargo build --bins ${V:+--verbose}_ cargo 
+  test --package solana-perf --package solana-ledger --package solana-core --lib ${V:+--verbose} -- --nocapture_cargo 
+  --Run--manifest-path poh-bench/Cargo.toml ${V:+--verbose} -- 
+    --hashes-per-tick 10;;test
+  -wasm_node 
+  --version_npm 
+--version
+  for dir in sdk/{program,}; do 
+  if [[ -r "$dir
+  "/package.json ]];
+  then
+      pushd "$dir"_ npm 
+      install_npm 
+      test 
+      pop
+      -d 
     fi
-  done
-  exit 0
-  ;;
-test-docs)
-  _ cargo test --jobs "$JOBS" --all --doc --exclude solana-local-cluster ${V:+--verbose} -- --nocapture
-  exit 0
-  ;;
-*)
-  echo "Error: Unknown test: $testName"
-  ;;
-esac
-
-(
-  export CARGO_TOOLCHAIN=+"$rust_stable"
-  export RUST_LOG="solana_metrics=warn,info,$RUST_LOG"
-  echo --- ci/localnet-sanity.sh
-  ci/localnet-sanity.sh -x
-
-  echo --- ci/run-sanity.sh
-  ci/run-sanity.sh -x
-)
+  done exit 0 ;; test-docs_cargo test
+  --jobs "$JOBS" --all --doc --exclude
+  solana-local-cluster ${V:+--verbose} -- 
+  --nocapture exit 0 ;; *echo 
+"Error: Unknown test:
+$testName" ;; esac( export 
+CARGO_TOOLCHAIN=+"$rust_stable" 
+export RUST_LOG="solana_metrics=warn,info,$RUST_LOG"
+  echo -
+  -- ci/localnet-sanity.sh
+  ci/localnet-sanity.sh -
+  -- ci/run-sanity.sh
+  ci/run-sanity.sh -x )
