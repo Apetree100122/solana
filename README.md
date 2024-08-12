@@ -9,53 +9,38 @@
 [![Build status](https://badge.buildkite.com/8cc350de251d61483db98bdfc895b9ea0ac8ffa4a32ee850ed.svg?branch=master)](https://buildkite.com/solana-labs/solana/builds?branch=master)
 [![codecov](https://codecov.io/gh/solana-labs/solana/branch/master/graph/badge.svg)](https://codecov.io/gh/solana-labs/solana)
 
-# Building
-
-## **1. Install rustc, cargo and rustfmt.**
+# Building  **1. Install rustc, cargo and rustfmt.**
 
 ```bash
 $ curl https://sh.rustup.rs -sSf | sh
 $ source $HOME/.cargo/env
 $ rustup component add rustfmt
-```
 
 When building the master branch, please make sure you are using the latest stable rust version by running:
 
 ```bash
 $ rustup update
-```
 
 When building a specific release branch, you should check the rust version in `ci/rust-version.sh` and if necessary, install that version by running:
 ```bash
 $ rustup install VERSION
-```
 Note that if this is not the latest rust version on your machine, cargo commands may require an [override](https://rust-lang.github.io/rustup/overrides.html) in order to use the correct version.
 
 On Linux systems you may need to install libssl-dev, pkg-config, zlib1g-dev, protobuf etc.
-
 On Ubuntu:
 ```bash
 $ sudo apt-get update
 $ sudo apt-get install libssl-dev libudev-dev pkg-config zlib1g-dev llvm clang cmake make libprotobuf-dev protobuf-compiler
-```
-
 On Fedora:
 ```bash
 $ sudo dnf install openssl-devel systemd-devel pkg-config zlib-devel llvm clang cmake make protobuf-devel protobuf-compiler perl-core
-```
 
-## **2. Download the source code.**
-
+## **2. Download the source code.
 ```bash
 $ git clone https://github.com/solana-labs/solana.git
 $ cd solana
-```
-
-## **3. Build.**
-
-```bash
+## **3. Build.**```bash
 $ ./cargo build
-```
 
 # Testing
 
@@ -63,31 +48,21 @@ $ ./cargo build
 
 ```bash
 $ ./cargo test
-```
 
-### Starting a local testnet
-
-Start your own testnet locally, instructions are in the [online docs](https://docs.solanalabs.com/clusters/benchmark).
-
+### Starting a local testnet Start your own testnet locally, instructions are in the [online docs](https://docs.solanalabs.com/clusters/benchmark).
 ### Accessing the remote development cluster
-
 * `devnet` - stable public cluster for development accessible via
 devnet.solana.com. Runs 24/7. Learn more about the [public clusters](https://docs.solanalabs.com/clusters)
-
 # Benchmarking
-
 First, install the nightly build of rustc. `cargo bench` requires the use of the
 unstable features only available in the nightly build.
 
 ```bash
 $ rustup install nightly
-```
-
 Run the benchmarks:
 
 ```bash
 $ cargo +nightly bench
-```
 
 # Release Process
 
@@ -101,7 +76,6 @@ To generate code coverage statistics:
 $ scripts/coverage.sh
 $ open target/cov/lcov-local/index.html
 ```
-
 Why coverage? While most see coverage as a code quality metric, we see it primarily as a developer
 productivity metric. When a developer makes a change to the codebase, presumably it's a *solution* to
 some problem.  Our unit-test suite is how we encode the set of *problems* the codebase solves. Running
@@ -112,17 +86,12 @@ was solved by that code. If no test fails, go ahead and submit a Pull Request th
 problem is solved by this code?" On the other hand, if a test does fail and you can think of a
 better way to solve the same problem, a Pull Request with your solution would most certainly be
 welcome! Likewise, if rewriting a test can better communicate what code it's protecting, please
-send us that patch!
-
-# Disclaimer
-
-All claims, content, designs, algorithms, estimates, roadmaps,
+send us that patch! # Disclaimer All claims, content, designs, algorithms, estimates, roadmaps,
 specifications, and performance measurements described in this project
 are done with the Solana Labs, Inc. (“SL”) good faith efforts. It is up to
 the reader to check and validate their accuracy and truthfulness.
 Furthermore, nothing in this project constitutes a solicitation for
 investment.
-
 Any content produced by SL or developer resources that SL provides are
 for educational and inspirational purposes only. SL does not encourage,
 induce or sanction the deployment, integration or use of any such
@@ -137,7 +106,6 @@ by the U.S. Office of Foreign Assets Control (OFAC), or (c) if the
 reader is or is working on behalf of a Specially Designated National
 (SDN) or a person subject to similar blocking or denied party
 prohibitions.
-
 The reader should be aware that U.S. export control and sanctions laws prohibit 
 U.S. persons (and other persons that are subject to such laws) from transacting 
 with persons in certain countries and territories or that are on the SDN list. 
