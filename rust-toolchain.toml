@@ -1,2 +1,1 @@
-[toolchain]
-channel = "1.76.0"
+[toolchain channel = 1.76.0]
