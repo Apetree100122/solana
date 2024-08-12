@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-
 PERF_LIBS_VERSION=v0.19.3
 VERSION=$PERF_LIBS_VERSION-1
-
 set -e
-cd "$(dirname "$0")"
-
+cd- 
+$dirname $0
+)
 if [[ $VERSION != "$(cat target/perf-libs/.version 2> /dev/null)" ]]; then
   if [[ $(uname) != Linux ]]; then
     echo Note: Performance libraries are only available for Linux
@@ -38,14 +37,11 @@ if [[ $VERSION != "$(cat target/perf-libs/.version 2> /dev/null)" ]]; then
     fi
     echo "$VERSION" > .version
   )
-
   # Setup symlinks so the perf-libs/ can be found from all binaries run out of
   # target/
   for dir in target/{debug,release}/{,deps/}; do
     mkdir -p $dir
     ln -sfT ../perf-libs ${dir}perf-libs
   done
-
 fi
-
 exit 0
